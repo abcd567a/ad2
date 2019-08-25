@@ -2,9 +2,6 @@
 
 INSTALL_FOLDER=/usr/share/ad2
 
-#echo "Installing rtl-sdr.rules..."
-#sudo wget -O  /etc/udev/rules.d/rtl-sdr.rules "https://raw.githubusercontent.com/osmocom/rtl-sdr/master/rtl-sdr.rules"
-
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
 echo "Downloading acarsdeco2 file from Google Drive"
@@ -59,13 +56,27 @@ RestartPreventExitStatus=64
 Nice=-5
 [Install]
 WantedBy=default.target
-
 EOM
-
-sudo chmod 744 ${SERVICE_FILE}
+sudo chmod 644 ${SERVICE_FILE}
 sudo systemctl enable ad2
-sudo systemctl restart ad2
 
+echo "Creating blacklist-rtl-sdr file..."
+BLACKLIST_FILE=/etc/modprobe.d/blacklist-rtl-sdr.conf
+sudo touch ${BLACKLIST_FILE}
+sudo chmod 777 ${BLACKLIST_FILE}
+echo "Writing code to blacklist file"
+/bin/cat <<EOM >${BLACKLIST_FILE}
+blacklist rtl2832
+blacklist dvb_usb_rtl28xxu
+blacklist dvb_usb_v2,rtl2832
+EOM
+sudo chmod 644 ${BLACKLIST_FILE}
+
+echo "Unloading kernel drivers for rtl-sdr..."
+sudo rmmod rtl2832 dvb_usb_rtl28xxu dvb_usb_v2,rtl2832
+
+echo "Starting  AcarSDeco2 ..."
+sudo systemctl start ad2
 
 
 echo " "
