@@ -42,7 +42,8 @@ Default setting are are bare minimum. </br>
 You can add extra arguments, one per line starting with `--` </br>
 ```
 
---freq 131550000 131725000
+--freq 131550000
+--freq 131725000
 --http-port 8686
 
 ```
