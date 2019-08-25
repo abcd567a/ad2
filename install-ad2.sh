@@ -2,7 +2,8 @@
 
 INSTALL_FOLDER=/usr/share/ad2
 
-
+echo "Installing rtl-sdr.rules..."
+sudo wget -O  /etc/udev/rules.d/rtl-sdr.rules "https://raw.githubusercontent.com/osmocom/rtl-sdr/master/rtl-sdr.rules"
 
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
