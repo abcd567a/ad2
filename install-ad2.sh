@@ -29,7 +29,8 @@ sudo touch ${CONFIG_FILE}
 sudo chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file ad2.conf"
 /bin/cat <<EOM >${CONFIG_FILE}
---freq 131550000 131725000
+--freq 131550000
+--freq 131725000
 --http-port 8686
 EOM
 sudo chmod 644 ${CONFIG_FILE}
