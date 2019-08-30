@@ -47,9 +47,16 @@ You can add extra arguments, one per line starting with `--` </br>
 --http-port 8686
 
 ```
+</br>
+
+**To see all config parameters** </br>
+```
+cd /usr/share/ad2
+./acarsdeco2 --help
+```
 
 ### UNINSTALL </br>
-To completely remove configuration and all files, give following 4 commands:
+To completely remove configuration and all files, give following 4 commands:</br>
 ```
 sudo systemctl stop ad2 
 sudo systemctl disable ad2 
