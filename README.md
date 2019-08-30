@@ -47,3 +47,12 @@ You can add extra arguments, one per line starting with `--` </br>
 --http-port 8686
 
 ```
+
+### UNINSTALL </br>
+To completely remove configuration and all files, give following 4 commands:
+```
+sudo systemctl stop ad2 
+sudo systemctl disable ad2 
+sudo rm /lib/systemd/system/ad2.service 
+sudo rm -rf /usr/share/ad2 
+```
