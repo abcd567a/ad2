@@ -10,6 +10,9 @@ sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://d
 echo "Unzipping downloaded file"
 sudo tar xvzf ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz -C ${INSTALL_FOLDER}
 
+echo "Creating symlink to acarsdeco2 binary in folder /usr/bin/ "
+sudo ln -s ${INSTALL_FOLDER}/acarsdeco2 /usr/bin/acarsdeco2
+
 echo "Creating startup script file ad2-start.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/ad2-start.sh
 sudo touch ${SCRIPT_FILE}
