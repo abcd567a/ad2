@@ -4,8 +4,10 @@ INSTALL_FOLDER=/usr/share/ad2
 
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
-echo "Downloading acarsdeco2 file from Google Drive"
-sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://drive.google.com/uc?export=download&id=1n0nWk-VRqj-Zamm29-DVYG8eQ8tVdv82"
+#echo "Downloading acarsdeco2 file from Google Drive"
+#sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://drive.google.com/uc?export=download&id=1n0nWk-VRqj-Zamm29-DVYG8eQ8tVdv82"
+echo "Downloading acarsdeco2 file from Github"
+sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://github.com/abcd567a/ad2/releases/download/V1/acarsdeco2_rpi2-3_debian9_20181201.tgz"
 
 echo "Unzipping downloaded file"
 sudo tar xvzf ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz -C ${INSTALL_FOLDER}
