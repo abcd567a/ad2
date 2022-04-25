@@ -1,9 +1,19 @@
 # ad2
-### AcarSDeco2 installation script for RPi 2/3/4 and Raspbian Stretch/Buster 
+### AcarSDeco2 installation script for RPi 2/3/4 and Raspberry Pi OS Stretch/Buster/Bullseye 
 </br>
 
-Copy-paste following command in SSH console and press Enter key. The script will install and configure acarsdeco2. </br></br>
-`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/ad2/master/install-ad2.sh)" ` </br></br></br>
+**Copy-paste following command in SSH console and press Enter key. The script will install and configure acarsdeco2.** </br></br>
+`sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/ad2/master/install-ad2.sh)" ` </br></br>
+
+**If installing on 64-bit Raspberry Pi OS** </br>
+In addition to above bash command, give following commands: </br>
+```
+sudo dpkg --add-architecture armhf   
+sudo apt update 
+
+sudo apt install libudev-dev:armhf  
+```
+</br>
 After script completes installation, it displays following message
 ```
 INSTALLATION COMPLETED
