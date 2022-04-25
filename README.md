@@ -14,8 +14,10 @@ sudo apt update
 sudo apt install libudev-dev:armhf  
 ```
 </br>
-After script completes installation, it displays following message
-```
+
+**After script completes installation, it displays following message** </br>
+
+```  
 INSTALLATION COMPLETED
 =======================
 PLEASE DO FOLLOWING:
