@@ -6,7 +6,7 @@
 `sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/ad2/master/install-ad2.sh)" ` </br></br>
 
 **If installing on 64-bit Raspberry Pi OS** </br>
-In addition to above bash command, give following commands: </br>
+Befor issueing above bash command, give following additional commands: </br>
 ```
 sudo dpkg --add-architecture armhf   
 sudo apt update 
