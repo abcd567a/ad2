@@ -3,7 +3,7 @@ VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 
 sudo apt update
-sudo apt install libudev-dev:armhf  
+sudo apt install -y libudev-dev:armhf  
 
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
@@ -43,12 +43,12 @@ echo "Writing code to config file ad2.conf"
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
-echo "Creating User ad2 to run acarsdeco2"
-sudo useradd --system ad2
-sudo usermod -a -G plugdev ad2
+##echo "Creating User ad2 to run acarsdeco2"
+##sudo useradd --system ad2
+##sudo usermod -a -G plugdev ad2
 
-echo "Assigning ownership of install folder to user ad2"
-sudo chown ad2:ad2 -R ${INSTALL_FOLDER}
+##echo "Assigning ownership of install folder to user ad2"
+##sudo chown ad2:ad2 -R ${INSTALL_FOLDER}
 
 echo "Creating Service file ad2.service"
 SERVICE_FILE=/lib/systemd/system/ad2.service
@@ -61,7 +61,7 @@ Description=AcarSDeco2
 Wants=network.target
 After=network.target
 [Service]
-User=ad2
+##User=ad2
 RuntimeDirectory=acarsdeco2
 RuntimeDirectoryMode=0755
 ExecStart=/bin/bash ${INSTALL_FOLDER}/ad2-start.sh
