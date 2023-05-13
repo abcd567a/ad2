@@ -2,6 +2,8 @@
 VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 
+sudo apt install libudev-dev:armhf  
+
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
 #echo "Downloading acarsdeco2 file from Google Drive"
