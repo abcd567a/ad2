@@ -74,4 +74,6 @@ sudo systemctl stop ad2
 sudo systemctl disable ad2 
 sudo rm /lib/systemd/system/ad2.service 
 sudo rm -rf /usr/share/ad2 
+sudo rm /usr/bin/acarsdeco2  
+sudo userdel ad2  
 ```
