@@ -1,5 +1,5 @@
 #!/bin/bash
-
+VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 
 echo "Creating folder ad2"
@@ -7,10 +7,10 @@ sudo mkdir ${INSTALL_FOLDER}
 #echo "Downloading acarsdeco2 file from Google Drive"
 #sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://drive.google.com/uc?export=download&id=1n0nWk-VRqj-Zamm29-DVYG8eQ8tVdv82"
 echo "Downloading acarsdeco2 file from Github"
-sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://github.com/abcd567a/ad2/releases/download/V1/acarsdeco2_rpi2-3_debian9_20181201.tgz"
+sudo wget -O ${INSTALL_FOLDER}/${VERSION}.tgz "https://github.com/abcd567a/ad2/releases/download/V1/${VERSION}.tgz"
 
 echo "Unzipping downloaded file"
-sudo tar xvzf ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz -C ${INSTALL_FOLDER}
+sudo tar xvzf ${INSTALL_FOLDER}/${VERSION}.tgz -C ${INSTALL_FOLDER}
 
 echo "Creating symlink to acarsdeco2 binary in folder /usr/bin/ "
 sudo ln -s ${INSTALL_FOLDER}/acarsdeco2 /usr/bin/acarsdeco2
@@ -40,6 +40,13 @@ echo "Writing code to config file ad2.conf"
 EOM
 sudo chmod 644 ${CONFIG_FILE}
 
+echo "Creating User ad2 to run acarsdeco2"
+sudo useradd --system ad2
+sudo usermod -a -G plugdev ad2
+
+echo "Assigning ownership of install folder to user ad2"
+sudo chown ad2:ad2 -R ${INSTALL_FOLDER}
+
 echo "Creating Service file ad2.service"
 SERVICE_FILE=/lib/systemd/system/ad2.service
 sudo touch ${SERVICE_FILE}
@@ -51,6 +58,7 @@ Description=AcarSDeco2
 Wants=network.target
 After=network.target
 [Service]
+User=ad2
 RuntimeDirectory=acarsdeco2
 RuntimeDirectoryMode=0755
 ExecStart=/bin/bash ${INSTALL_FOLDER}/ad2-start.sh
