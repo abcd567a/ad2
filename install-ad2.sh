@@ -121,5 +121,5 @@ echo " "
 echo -e "\e[32mTo see status\e[39m sudo systemctl status ad2"
 echo -e "\e[32mTo restart\e[39m    sudo systemctl restart ad2"
 echo -e "\e[32mTo stop\e[39m       sudo systemctl stop ad2"
-
+echo -e "\e[95mIf status shows failed/device busy, Unplug then Replug the Dongle and REBOOT\e[39m"
 
