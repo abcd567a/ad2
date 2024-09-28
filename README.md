@@ -1,4 +1,6 @@
 # ad2
+#### To download AcarsDeco2 for Raspberry Pi, click link below:</br>https://github.com/abcd567a/ad2/releases/tag/V1
+
 ### AcarSDeco2 installation script for RPi 2/3/4 and Raspberry Pi OS Stretch/Buster/Bullseye 
 </br>
 
