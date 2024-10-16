@@ -2,8 +2,11 @@
 VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 
+sudo dpkg --add-architecture armhf
 sudo apt update
-sudo apt install -y libudev-dev:armhf  
+##Install dependencies
+sudo apt install -y libudev-dev:armhf
+sudo apt install -y libstdc++6:armhf
 
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
