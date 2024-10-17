@@ -38,7 +38,10 @@ PLEASE DO FOLLOWING:
 To see status sudo systemctl status ad2
 To restart    sudo systemctl restart ad2
 To stop       sudo systemctl stop ad2
-If status shows failed device busy, then REBOOT
+If status shows "Error: sdr_open(): Device or resource busy", then
+    (1) Unplug and re-plug the Dongle
+    (2) REBOOT Pi
+
 ```
 
 ### CONFIGURATION </br>
