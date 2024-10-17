@@ -1,20 +1,12 @@
 # ad2
 #### To download AcarsDeco2 for Raspberry Pi, click link below:</br>https://github.com/abcd567a/ad2/releases/tag/V1
 
-### AcarSDeco2 installation script for RPi 2/3/4 and Raspberry Pi OS Stretch/Buster/Bullseye 
+### AcarSDeco2 installation script for RPi 2/3/4 with </br>32-bit (armhf)</br>64-bit (arm64) </br>Raspberry Pi OS Stretch/Buster/Bullseye/Bookworm
 </br>
 
 **Copy-paste following command in SSH console and press Enter key. The script will install and configure acarsdeco2.** </br></br>
 `sudo bash -c "$(wget -O - https://raw.githubusercontent.com/abcd567a/ad2/master/install-ad2.sh)" ` </br></br>
 
-**If installing on 64-bit Raspberry Pi OS** </br>
-Befor issueing above bash command, give following additional commands: </br>
-```
-sudo dpkg --add-architecture armhf   
-sudo apt update 
-
-sudo apt install libudev-dev:armhf  
-```
 </br>
 
 **After script completes installation, it displays following message** </br>
@@ -25,10 +17,10 @@ INSTALLATION COMPLETED
 PLEASE DO FOLLOWING:
 =======================
 (1) In your browser, go to web interface at
-     http://ip-of-pi:8686
+     http://192.168.12.21:8686
 
 (2) To view/edit configuration, open config file by following command:
-     sudo nano /usr/share/ad2/ad2.conf
+     sudo nano /ad2.conf
 
     (a) Default value of gain is auto
         To use another value of gain, add following NEW LINE
@@ -46,6 +38,7 @@ PLEASE DO FOLLOWING:
 To see status sudo systemctl status ad2
 To restart    sudo systemctl restart ad2
 To stop       sudo systemctl stop ad2
+If status shows failed device busy, then REBOOT
 ```
 
 ### CONFIGURATION </br>
