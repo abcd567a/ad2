@@ -2,9 +2,13 @@
 VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 
+echo -e "\e[32mAdding architecture armhf\e[39m"
 sudo dpkg --add-architecture armhf
+echo -e "\e[1;32m....UPDATING....\e[2;39m"
+sleep 3
 sudo apt update
-##Install dependencies
+echo -e "\e[1;32mInstalling dependencies\e[2;39m"
+sleep 3
 sudo apt install -y libudev-dev:armhf
 sudo apt install -y libstdc++6:armhf
 
@@ -127,5 +131,5 @@ echo " "
 echo -e "\e[32mTo see status\e[39m sudo systemctl status ad2"
 echo -e "\e[32mTo restart\e[39m    sudo systemctl restart ad2"
 echo -e "\e[32mTo stop\e[39m       sudo systemctl stop ad2"
-echo -e "\e[95mIf status shows failed/device busy, Unplug then Replug the Dongle and REBOOT\e[39m"
+echo -e "\e[1;31mIf status shows failed device busy, then \033[1;32mREBOOT\033[2m  \e[39m"
 
