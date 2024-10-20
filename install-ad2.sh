@@ -2,15 +2,19 @@
 VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 
-echo -e "\e[1;32mAdding architecture armhf\e[39m"
+echo -e "\e[1;32m...ADDING ARCHITECTURE armhf ...\e[39m"
+sleep 2
 sudo dpkg --add-architecture armhf
-echo -e "\e[1;32m....UPDATING....\e[39m"
-sleep 3
+echo -e "\e[1;32m...UPDATING ... \e[39m"
+sleep 2
 sudo apt update
-echo -e "\e[1;32m...INSTALLING DEPENDENCY PACKAGES\e[2;39m"
-sleep 3
-sudo apt install -y libudev-dev:armhf
+echo -e "\e[1;32m...INSTALLING DEPENDENCY PACKAGES ... \e[39m"
+echo -e "\e[1;32m...INSTALLING DEPENDENCY 1 of 2 (libstdc++6:armhf) ... \e[39m"
+sleep 2
 sudo apt install -y libstdc++6:armhf
+echo -e "\e[1;32m...INSTALLING DEPENDENCY 2 of 2 (libudev-dev:armhf) ... \e[39m"
+sleep 2
+sudo apt install -y libudev-dev:armhf
 
 echo "Creating folder ad2"
 sudo mkdir ${INSTALL_FOLDER}
@@ -24,6 +28,9 @@ sudo tar xvzf ${INSTALL_FOLDER}/${VERSION}.tgz -C ${INSTALL_FOLDER}
 
 echo "Creating symlink to acarsdeco2 binary in folder /usr/bin/ "
 sudo ln -s ${INSTALL_FOLDER}/acarsdeco2 /usr/bin/acarsdeco2
+
+echo "Downloading & installing rtl-sdr.rules file from Github ..."
+sudo wget -O /etc/udev/rules.d/rtl-sdr.rules "https://raw.githubusercontent.com/abcd567a/ad2/master/rtl-sdr.rules"
 
 echo "Creating startup script file ad2-start.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/ad2-start.sh
