@@ -1,6 +1,8 @@
 #!/bin/bash
 VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
+echo "Creating install folder ad2"
+sudo mkdir ${INSTALL_FOLDER}
 
 echo -e "\e[1;32m...ADDING ARCHITECTURE armhf ...\e[39m"
 sleep 2
@@ -16,8 +18,6 @@ echo -e "\e[1;32m...INSTALLING DEPENDENCY 2 of 2 (libudev-dev:armhf) ... \e[39m"
 sleep 2
 sudo apt install -y libudev-dev:armhf
 
-echo "Creating folder ad2"
-sudo mkdir ${INSTALL_FOLDER}
 #echo "Downloading acarsdeco2 file from Google Drive"
 #sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://drive.google.com/uc?export=download&id=1n0nWk-VRqj-Zamm29-DVYG8eQ8tVdv82"
 echo "Downloading acarsdeco2 file from Github"
