@@ -2,40 +2,38 @@
 VERSION=acarsdeco2_rpi2-3_debian9_20181201
 INSTALL_FOLDER=/usr/share/ad2
 echo "Creating install folder ad2"
-sudo mkdir ${INSTALL_FOLDER}
+mkdir ${INSTALL_FOLDER}
 
 echo -e "\e[1;32m...ADDING ARCHITECTURE armhf ...\e[39m"
 sleep 2
-sudo dpkg --add-architecture armhf
+dpkg --add-architecture armhf
 echo -e "\e[1;32m...UPDATING ... \e[39m"
 sleep 2
-sudo apt update
+apt update
 echo -e "\e[1;32m...INSTALLING DEPENDENCY PACKAGES ... \e[39m"
 echo -e "\e[1;32m...INSTALLING DEPENDENCY 1 of 2 (libstdc++6:armhf) ... \e[39m"
 sleep 2
-sudo apt install -y libstdc++6:armhf
+apt install -y libstdc++6:armhf
 echo -e "\e[1;32m...INSTALLING DEPENDENCY 2 of 2 (libudev-dev:armhf) ... \e[39m"
 sleep 2
-sudo apt install -y libudev-dev:armhf
+apt install -y libudev-dev:armhf
 
-#echo "Downloading acarsdeco2 file from Google Drive"
-#sudo wget -O ${INSTALL_FOLDER}/acarsdeco2_rpi2-3_debian9_20181201.tgz "https://drive.google.com/uc?export=download&id=1n0nWk-VRqj-Zamm29-DVYG8eQ8tVdv82"
 echo "Downloading acarsdeco2 file from Github"
-sudo wget -O ${INSTALL_FOLDER}/${VERSION}.tgz "https://github.com/abcd567a/ad2/releases/download/V1/${VERSION}.tgz"
+wget -O ${INSTALL_FOLDER}/${VERSION}.tgz "https://github.com/abcd567a/ad2/releases/download/V1/${VERSION}.tgz"
 
 echo "Unzipping downloaded file"
-sudo tar xvzf ${INSTALL_FOLDER}/${VERSION}.tgz -C ${INSTALL_FOLDER}
+tar xvzf ${INSTALL_FOLDER}/${VERSION}.tgz -C ${INSTALL_FOLDER}
 
 echo "Creating symlink to acarsdeco2 binary in folder /usr/bin/ "
-sudo ln -s ${INSTALL_FOLDER}/acarsdeco2 /usr/bin/acarsdeco2
+ln -s ${INSTALL_FOLDER}/acarsdeco2 /usr/bin/acarsdeco2
 
 echo "Downloading & installing rtl-sdr.rules file from Github ..."
-sudo wget -O /etc/udev/rules.d/rtl-sdr.rules "https://raw.githubusercontent.com/abcd567a/ad2/master/rtl-sdr.rules"
+wget -O /etc/udev/rules.d/rtl-sdr.rules "https://raw.githubusercontent.com/abcd567a/ad2/master/rtl-sdr.rules"
 
 echo "Creating startup script file ad2-start.sh"
 SCRIPT_FILE=${INSTALL_FOLDER}/ad2-start.sh
-sudo touch ${SCRIPT_FILE}
-sudo chmod 777 ${SCRIPT_FILE}
+touch ${SCRIPT_FILE}
+chmod 777 ${SCRIPT_FILE}
 echo "Writing code to startup script file ad2-start.sh"
 /bin/cat <<EOM >${SCRIPT_FILE}
 #!/bin/sh
@@ -43,31 +41,31 @@ CONFIG=""
 while read -r line; do CONFIG="\${CONFIG} \$line"; done < ${INSTALL_FOLDER}/ad2.conf
 ${INSTALL_FOLDER}/acarsdeco2 \${CONFIG}
 EOM
-sudo chmod +x ${SCRIPT_FILE}
+chmod +x ${SCRIPT_FILE}
 
 echo "Creating config file mm2.conf"
 CONFIG_FILE=${INSTALL_FOLDER}/ad2.conf
-sudo touch ${CONFIG_FILE}
-sudo chmod 777 ${CONFIG_FILE}
+touch ${CONFIG_FILE}
+chmod 777 ${CONFIG_FILE}
 echo "Writing code to config file ad2.conf"
 /bin/cat <<EOM >${CONFIG_FILE}
 --freq 131550000
 --freq 131725000
 --http-port 8686
 EOM
-sudo chmod 644 ${CONFIG_FILE}
+chmod 644 ${CONFIG_FILE}
 
 echo "Creating User ad2 to run acarsdeco2"
-sudo useradd --system ad2
-sudo usermod -a -G plugdev ad2
+useradd --system ad2
+usermod -a -G plugdev ad2
 
 echo "Assigning ownership of install folder to user ad2"
-sudo chown ad2:ad2 -R ${INSTALL_FOLDER}
+chown ad2:ad2 -R ${INSTALL_FOLDER}
 
 echo "Creating Service file ad2.service"
 SERVICE_FILE=/lib/systemd/system/ad2.service
-sudo touch ${SERVICE_FILE}
-sudo chmod 777 ${SERVICE_FILE}
+touch ${SERVICE_FILE}
+chmod 777 ${SERVICE_FILE}
 /bin/cat <<EOM >${SERVICE_FILE}
 # acarsdeco2 service for systemd
 [Unit]
@@ -88,26 +86,26 @@ Nice=-5
 [Install]
 WantedBy=default.target
 EOM
-sudo chmod 644 ${SERVICE_FILE}
-sudo systemctl enable ad2
+chmod 644 ${SERVICE_FILE}
+systemctl enable ad2
 
 echo "Creating blacklist-rtl-sdr file..."
 BLACKLIST_FILE=/etc/modprobe.d/blacklist-rtl-sdr.conf
-sudo touch ${BLACKLIST_FILE}
-sudo chmod 777 ${BLACKLIST_FILE}
+touch ${BLACKLIST_FILE}
+chmod 777 ${BLACKLIST_FILE}
 echo "Writing code to blacklist file"
 /bin/cat <<EOM >${BLACKLIST_FILE}
 blacklist rtl2832
 blacklist dvb_usb_rtl28xxu
 blacklist dvb_usb_v2,rtl2832
 EOM
-sudo chmod 644 ${BLACKLIST_FILE}
+chmod 644 ${BLACKLIST_FILE}
 
 echo "Unloading kernel drivers for rtl-sdr..."
-sudo rmmod rtl2832 dvb_usb_rtl28xxu dvb_usb_v2,rtl2832
+rmmod rtl2832 dvb_usb_rtl28xxu dvb_usb_v2,rtl2832
 
 echo "Starting  AcarSDeco2 ..."
-sudo systemctl start ad2
+systemctl start ad2
 
 
 echo " "
