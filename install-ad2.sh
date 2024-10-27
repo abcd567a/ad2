@@ -11,12 +11,16 @@ echo -e "\e[1;32m...UPDATING ... \e[39m"
 sleep 2
 apt update
 echo -e "\e[1;32m...INSTALLING DEPENDENCY PACKAGES ... \e[39m"
-echo -e "\e[1;32m...INSTALLING DEPENDENCY 1 of 2 (libstdc++6:armhf) ... \e[39m"
+echo -e "\e[1;32m...INSTALLING DEPENDENCY 1 of 3 (libstdc++6:armhf) ... \e[39m"
 sleep 2
 apt install -y libstdc++6:armhf
-echo -e "\e[1;32m...INSTALLING DEPENDENCY 2 of 2 (libudev-dev:armhf) ... \e[39m"
+echo -e "\e[1;32m...INSTALLING DEPENDENCY 2 of 3 (libudev-dev:armhf) ... \e[39m"
 sleep 2
 apt install -y libudev-dev:armhf
+
+echo -e "\e[1;32m...INSTALLING DEPENDENCY 3 of 3 (netbase) ... \e[39m"
+sleep 2
+apt install -y netbase
 
 echo "Downloading acarsdeco2 file from Github"
 wget -O ${INSTALL_FOLDER}/${VERSION}.tgz "https://github.com/abcd567a/ad2/releases/download/V1/${VERSION}.tgz"
